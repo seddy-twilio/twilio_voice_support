@@ -4,11 +4,15 @@ const client = require('twilio')(accountSid, authToken);
 const fs = require('fs');
 const https = require('https');
 
+// UPDATE THESE VARS !!
+let startDate = '2022-08-31';
+let endDate =  '2022-11-01';
+
 
 async function download() {
    // Define date range - should match what was initiated
-   var start = new Date("08/31/2022");
-   var end = new Date("11/01/2022");
+   var start = new Date(startDate);
+   var end = new Date(endDate);
 
    console.log("Archived call logs download beginning for Days between " + start + " and " + end);
 
