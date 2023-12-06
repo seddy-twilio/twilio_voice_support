@@ -2,14 +2,18 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN; 
 const client = require('twilio')(accountSid, authToken);
 
+// UPDATE THESE VARS !!
+let statusEmail = 'seddy@twilio.com';
+let startDate = '2022-08-31';
+let endDate =  '2022-11-01';
 
 // run bulk export for calls from Sep 2022 - Nov 2022 in parent account
 client.bulkexports.v1.exports('Calls')
       .exportCustomJobs
       .create({
-         email: 'andre.chen@ui.com',
-         startDay: '2022-08-31',
-         endDay: '2022-11-01',
+         email: statusEmail,
+         startDay: startDate,
+         endDay: endDate,
          friendlyName: 'parent_account_export'
        })
       .then(export_custom_job => {
@@ -28,9 +32,9 @@ client.bulkexports.v1.exports('Calls')
 	          subClient.bulkexports.v1.exports('Calls')
 			      .exportCustomJobs
 			      .create({
-			         email: 'andre.chen@ui.com',
-			         startDay: '2022-08-31',
-			         endDay: '2022-11-01',
+			         email: statusEmail,
+			         startDay: startDate,
+			         endDay: endDate,
 			         friendlyName: 'subaccount_export_' + a.sid
 			       })
 			      .then(export_custom_job => {
